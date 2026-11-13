@@ -36,7 +36,9 @@ export const locales = {
     "sourceCode": "在 GitHub 查看源码 ↗",
     "gallery": "成品展示",
     "makingOf": "制作过程",
-    "articleTitle": "启示录 · 新天新地"
+    "articleTitle": "启示录 · 新天新地",
+    "email": "邮箱",
+    "location": "浙江杭州"
   },
   "en": {
     "name": "English",
@@ -74,7 +76,9 @@ export const locales = {
     "sourceCode": "View source on GitHub ↗",
     "gallery": "Gallery",
     "makingOf": "Making of",
-    "articleTitle": "Revelation · A New Heaven and a New Earth"
+    "articleTitle": "Revelation · A New Heaven and a New Earth",
+    "email": "Email",
+    "location": "Hangzhou, Zhejiang"
   },
   "ja": {
     "name": "日本語",
@@ -112,7 +116,9 @@ export const locales = {
     "sourceCode": "GitHubでソースを見る ↗",
     "gallery": "完成画像",
     "makingOf": "制作工程",
-    "articleTitle": "ヨハネの黙示録 · 新しい天と地"
+    "articleTitle": "ヨハネの黙示録 · 新しい天と地",
+    "email": "メール",
+    "location": "浙江省・杭州"
   },
   "de": {
     "name": "Deutsch",
@@ -144,7 +150,9 @@ export const locales = {
     "closeContact": "Schließen",
     "contact": "Kontakt",
     "themeLight": "Zum Tagmodus wechseln",
-    "themeDark": "Zum Nachtmodus wechseln"
+    "themeDark": "Zum Nachtmodus wechseln",
+    "email": "E-Mail",
+    "location": "Hangzhou, Zhejiang"
   },
   "fr": {
     "name": "Français",
@@ -176,7 +184,9 @@ export const locales = {
     "closeContact": "Fermer",
     "contact": "Contact",
     "themeLight": "Passer en mode jour",
-    "themeDark": "Passer en mode nuit"
+    "themeDark": "Passer en mode nuit",
+    "email": "E-mail",
+    "location": "Hangzhou, Zhejiang"
   },
   "es": {
     "name": "Español",
@@ -208,7 +218,9 @@ export const locales = {
     "closeContact": "Cerrar",
     "contact": "Contacto",
     "themeLight": "Cambiar a modo día",
-    "themeDark": "Cambiar a modo noche"
+    "themeDark": "Cambiar a modo noche",
+    "email": "Correo electrónico",
+    "location": "Hangzhou, Zhejiang"
   },
   "ko": {
     "name": "한국어",
@@ -246,7 +258,9 @@ export const locales = {
     "sourceCode": "GitHub에서 소스 보기 ↗",
     "gallery": "완성 이미지",
     "makingOf": "제작 과정",
-    "articleTitle": "요한계시록 · 새 하늘과 새 땅"
+    "articleTitle": "요한계시록 · 새 하늘과 새 땅",
+    "email": "이메일",
+    "location": "저장성 항저우"
   },
   "la": {
     "name": "Latina",
@@ -278,7 +292,9 @@ export const locales = {
     "closeContact": "Claude",
     "contact": "Contactus",
     "themeLight": "Modum diurnum elige",
-    "themeDark": "Modum nocturnum elige"
+    "themeDark": "Modum nocturnum elige",
+    "email": "Epistula electronica",
+    "location": "Hangzhou, Zhejiang"
   },
   "ru": {
     "name": "Русский",
@@ -316,7 +332,9 @@ export const locales = {
     "sourceCode": "Исходный код на GitHub ↗",
     "gallery": "Галерея",
     "makingOf": "Процесс создания",
-    "articleTitle": "Откровение · Новое небо и новая земля"
+    "articleTitle": "Откровение · Новое небо и новая земля",
+    "email": "Электронная почта",
+    "location": "Ханчжоу, Чжэцзян"
   },
   "pt": {
     "name": "Português",
@@ -348,7 +366,9 @@ export const locales = {
     "closeContact": "Fechar",
     "contact": "Contato",
     "themeLight": "Mudar para o modo diurno",
-    "themeDark": "Mudar para o modo noturno"
+    "themeDark": "Mudar para o modo noturno",
+    "email": "E-mail",
+    "location": "Hangzhou, Zhejiang"
   },
   "nl": {
     "name": "Nederlands",
@@ -380,7 +400,9 @@ export const locales = {
     "closeContact": "Sluiten",
     "contact": "Contact",
     "themeLight": "Naar dagmodus",
-    "themeDark": "Naar nachtmodus"
+    "themeDark": "Naar nachtmodus",
+    "email": "E-mail",
+    "location": "Hangzhou, Zhejiang"
   },
   "vi": {
     "name": "Tiếng Việt",
@@ -412,7 +434,9 @@ export const locales = {
     "closeContact": "Đóng",
     "contact": "Liên hệ",
     "themeLight": "Chuyển sang chế độ ban ngày",
-    "themeDark": "Chuyển sang chế độ ban đêm"
+    "themeDark": "Chuyển sang chế độ ban đêm",
+    "email": "Email",
+    "location": "Hàng Châu, Chiết Giang"
   },
   "th": {
     "name": "ไทย",
@@ -444,7 +468,9 @@ export const locales = {
     "closeContact": "ปิด",
     "contact": "ติดต่อ",
     "themeLight": "เปลี่ยนเป็นโหมดกลางวัน",
-    "themeDark": "เปลี่ยนเป็นโหมดกลางคืน"
+    "themeDark": "เปลี่ยนเป็นโหมดกลางคืน",
+    "email": "อีเมล",
+    "location": "หางโจว เจ้อเจียง"
   },
   "hi": {
     "name": "हिन्दी",
@@ -476,7 +502,9 @@ export const locales = {
     "closeContact": "बंद करें",
     "contact": "संपर्क",
     "themeLight": "दिन मोड में बदलें",
-    "themeDark": "रात मोड में बदलें"
+    "themeDark": "रात मोड में बदलें",
+    "email": "ईमेल",
+    "location": "हांगझोउ, झेजियांग"
   },
   "he": {
     "name": "עברית",
@@ -508,6 +536,8 @@ export const locales = {
     "closeContact": "סגירה",
     "contact": "יצירת קשר",
     "themeLight": "מעבר למצב יום",
-    "themeDark": "מעבר למצב לילה"
+    "themeDark": "מעבר למצב לילה",
+    "email": "דוא״ל",
+    "location": "האנגג'ואו, ג'ג'יאנג"
   }
 };

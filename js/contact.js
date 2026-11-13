@@ -1,11 +1,15 @@
-import { translate } from './i18n.js?v=be93f58c91cb';
+import { translate } from './i18n.js?v=c837371e97f2';
 
 const dialog = document.querySelector('#wechat-dialog');
 const openButton = document.querySelector('#wechat-open');
+const emailLink = document.querySelector('#email-link');
 
 function labels() {
   openButton.title = translate('wechat');
   openButton.setAttribute('aria-label', translate('wechat'));
+  const emailLabel = translate('email') + ': ' + emailLink.getAttribute('href').slice(7);
+  emailLink.title = emailLabel;
+  emailLink.setAttribute('aria-label', emailLabel);
   document.querySelector('.keys').setAttribute('aria-label', translate('contact'));
   document.querySelector('#wechat-close').setAttribute('aria-label', translate('closeContact'));
   document.querySelector('#wechat-qr').alt = translate('wechat') + ' QR';
