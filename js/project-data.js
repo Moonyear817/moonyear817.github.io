@@ -484,66 +484,70 @@ export const projects = [
   {
     "slug": "wandan-index",
     "title": {
-      "zh": "临界指数 · 方法与计算",
-      "en": "Criticality Index · Methods & Calculation"
+      "zh": "持续经营脆弱性指数",
+      "en": "Going-Concern Vulnerability Index"
     },
     "description": {
-      "zh": "围绕“经营能力已经受损到什么程度”构建的试行评估框架。公开版包含六系统判据、方案 A/B 对照、未知区间、模拟算例与 Python 精确计算器。",
-      "en": "An experimental framework for describing impairment of operating capacity. The public edition includes six-system criteria, A/B rules, uncertainty ranges, constructed examples and an exact Python calculator."
+      "zh": "持续经营脆弱性指数（GCVI）是面向小型商业组织的状态测度框架。研究以六维经营状态为输入，在非补偿性约束下结合风险聚合与致命否决，并以可行状态枚举处理不完全信息。公开实现包含算法对照、区间计算与形式性质校核。",
+      "en": "The Going-Concern Vulnerability Index (GCVI) is a state-measurement framework for small commercial organizations. It combines six-dimensional operating states, risk aggregation under non-compensatory constraints, and fatal-condition vetoes, using feasible-state enumeration to address incomplete information. The public implementation provides comparative rules, interval calculations and formal-property checks."
     },
-    "repository": "https://github.com/Moonyear817/criticality-index",
+    "repository": "https://github.com/Moonyear817/gcvi",
     "gallery": [],
     "credit": {
-      "zh": "研究中的方法原型，尚未完成多案例实证验证。分数描述当前状态，不表示倒闭概率。公开算例为构造数据。",
-      "en": "A research prototype without multi-case empirical validation. Scores describe current states, not failure probabilities. Public examples are constructed."
+      "zh": "当前成果限于测度规则的形式化与计算实现。62,425 个形式状态不构成企业样本；分档可靠性、参数适用性与外部效度仍需经验研究。指数不解释为破产概率或剩余存续期限。",
+      "en": "The current contribution is limited to rule formalization and computational implementation. The 62,425 formal states are not an empirical sample of firms. Grading reliability, parameter applicability and external validity require empirical study. The index is not interpreted as bankruptcy probability or remaining organizational lifetime."
     },
     "sources": [
       {
-        "label": "方法说明 / Methods",
-        "url": "https://github.com/Moonyear817/criticality-index/blob/main/docs/method.md"
+        "label": "方法文档 / Methodology",
+        "url": "https://github.com/Moonyear817/gcvi/blob/main/docs/method.md"
       }
     ],
     "process": {
-      "tools": "Python · Fraction · LaTeX · Formal enumeration",
+      "label": {
+        "zh": "研究方法",
+        "en": "Methodology"
+      },
+      "tools": "Python · Rational arithmetic · State-space enumeration",
       "steps": [
         {
           "title": {
-            "zh": "先明确分数回答的问题",
-            "en": "Define the question"
+            "zh": "评估对象与状态空间界定",
+            "en": "Assessment scope and state space"
           },
           "body": {
-            "zh": "将目标限定为固定对象、时点和证据范围下的经营能力受损状态，分别记录现金、业务与收入、交付、团队、治理、必要经营条件。先核对事实，再给出档位。",
-            "en": "Define impairment for a fixed organization, time and evidence scope. Assess cash, business and revenue, delivery, team, governance and necessary operating conditions. Review facts before assigning grades."
+            "zh": "预先确定评估对象、时点、观察期与证据边界，将现金、业务与收入、交付、团队、治理及必要经营条件编码为六维离散状态。各维度采用五级严重度编码，并记录支持分档的事实依据；缺失信息作为独立状态保留。",
+            "en": "Specify the organization, assessment time, observation period and evidence scope in advance. Encode cash, business and revenue, delivery, team, governance and necessary operating conditions as six discrete dimensions. Each dimension uses five severity grades with traceable evidence; missing information remains explicit."
           }
         },
         {
           "title": {
-            "zh": "把致命与未知单独处理",
-            "en": "Separate fatal and unknown states"
+            "zh": "非补偿性约束与聚合规则比较",
+            "en": "Non-compensatory constraints and aggregation"
           },
           "body": {
-            "zh": "已核实致命条件直接为 100；致命未知或材料未复核时待补证。致命已排除、仅有部分档位或作用链未定时，枚举可行补全并输出区间，避免把未知填成零。",
-            "en": "Verified fatal conditions produce 100; unknown fatal status or unreviewed evidence remains pending. When fatal conditions are excluded but some grades or chains are missing, enumerate feasible completions to report a range."
+            "zh": "将已核实的致命条件置于聚合层之前，禁止其他维度的优势抵消必要经营功能的失效。非致命层比较两类规则：方案 A 允许风险叠加跨越档位；当前采用的方案 B 优先保持最高严重档的排序，再在档内表达其余风险与已核实作用链。",
+            "en": "Place verified fatal conditions before aggregation, preventing favorable dimensions from offsetting failure of a necessary operating function. Compare two non-fatal rules: A permits cumulative risks to cross tiers; the currently adopted B preserves highest-severity-tier priority while representing other risks and verified interaction chains within the tier."
           }
         },
         {
           "title": {
-            "zh": "比较两种排序方案",
-            "en": "Compare two ordering rules"
+            "zh": "不完全信息下的区间识别",
+            "en": "Interval identification with incomplete information"
           },
           "body": {
-            "zh": "方案 A 允许风险叠加升档；当前推荐的方案 B 将叠加限制在最高档区间内，保留最高档优先。文档同时写清两者的代价，并用相同输入展示不同结果。",
-            "en": "A allows stacked risks to cross tiers. The currently preferred B keeps stacking within the highest-risk tier, preserving tier priority. Documents explain each trade-off and compare both rules on identical inputs."
+            "zh": "以三值逻辑区分条件成立、不成立与未知。致命状态未知或材料未经复核时不发布点值；致命条件已排除、仅部分档位或作用链未定时，在与已知约束相容的可行补全集合上计算上下界，保留缺失项及其对结果范围的影响。",
+            "en": "Use three-valued logic to distinguish true, false and unknown conditions. Do not publish a point score when fatal status is unresolved or evidence unreviewed. Once fatal conditions are excluded, compute lower and upper bounds over feasible completions consistent with known constraints, retaining the missing inputs and their effect on the range."
           }
         },
         {
           "title": {
-            "zh": "做成可复算的公开版",
-            "en": "Build a reproducible public edition"
+            "zh": "形式性质校核与可复现实现",
+            "en": "Formal-property checks and reproducibility"
           },
           "body": {
-            "zh": "从已有书稿、数学工作稿和脚本整理出方法说明、分档判据、模板与模拟算例，加入有理数计算器；8 项测试通过，覆盖 62,425 个可行形式状态的基本性质与单步单调性。形式校核不代表实证预测有效。",
-            "en": "Organize the existing manuscripts and scripts into methods, criteria, templates and constructed examples, adding an exact rational calculator. Eight tests pass, including basic properties and single-step monotonicity across 62,425 feasible formal states. Formal checks do not establish empirical predictive validity."
+            "zh": "以有理数实现聚合与取整，避免浮点误差改变显示结果。8 项测试覆盖构造算例、致命优先、缺失信息与输入可行性，并在全部 62,425 个可行形式状态上校核下界、封顶、单项保真、单步单调性及方案 B 的档位区间。该校核针对规则性质，不构成预测效度证据。",
+            "en": "Implement aggregation and rounding with rational arithmetic to avoid floating-point changes to displayed results. Eight tests cover constructed examples, fatal precedence, missing information and input feasibility, with bounds, caps, single-risk fidelity, single-step monotonicity and B-tier ranges checked across all 62,425 feasible formal states. These checks concern rule properties, not predictive validity."
           }
         }
       ]

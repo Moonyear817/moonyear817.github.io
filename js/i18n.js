@@ -1,4 +1,4 @@
-import { locales } from './locales.js?v=51acdceb82b2';
+import { locales } from './locales.js?v=d84902b7dbb2';
 
 const root = document.documentElement;
 const reader = document.querySelector('#reader');

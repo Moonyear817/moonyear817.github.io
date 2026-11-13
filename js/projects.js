@@ -1,5 +1,5 @@
-import { projects } from './project-data.js?v=51acdceb82b2';
-import { currentLanguage, translate } from './i18n.js?v=51acdceb82b2';
+import { projects } from './project-data.js?v=d84902b7dbb2';
+import { currentLanguage, translate } from './i18n.js?v=d84902b7dbb2';
 
 const list = document.querySelector('.project-list');
 const reader = document.querySelector('#project-reader');
@@ -94,8 +94,8 @@ function renderProject(project) {
   sections.querySelector('[data-project-scroll=".project-gallery"]').hidden = !project.gallery.length;
   sections.querySelector('[data-project-scroll=".project-gallery"]').textContent =
     language === 'zh' ? '成品展示' : 'Gallery';
-  sections.querySelector('[data-project-scroll=".project-process"]').textContent =
-    language === 'zh' ? '制作过程' : 'Making of';
+  const processLabel = project.process.label?.[language] || (language === 'zh' ? '制作过程' : 'Making of');
+  sections.querySelector('[data-project-scroll=".project-process"]').textContent = processLabel;
 
   const gallery = reader.querySelector('.project-gallery');
   gallery.hidden = !project.gallery.length;
@@ -104,8 +104,7 @@ function renderProject(project) {
     createFigure(image, language, index === 0 ? 'eager' : 'lazy')
   ));
 
-  content.querySelector('#project-process-title').textContent =
-    language === 'zh' ? '制作过程' : 'Making of';
+  content.querySelector('#project-process-title').textContent = processLabel;
   content.querySelector('.project-tools').textContent = project.process.tools;
   content.querySelector('.project-process-steps').replaceChildren(
     ...project.process.steps.map(step => {
