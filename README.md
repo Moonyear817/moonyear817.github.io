@@ -24,6 +24,8 @@ node serve.mjs
 
 ## 发布
 
+发布前运行 `python3 scripts/prepare-release.py`，为页面、脚本依赖和样式统一生成内容版本号，避免旧缓存。
+
 GitHub Pages 从 `main` 分支根目录发布；`.nojekyll` 保持静态文件直接提供。更新后推送到 `main`，等待 Pages 部署完成。
 
 ## 第三方资源

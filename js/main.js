@@ -1,8 +1,8 @@
 import * as THREE from 'three';
 import { Reflector } from 'three/addons/Reflector.js';
-import { buildScene } from './scene.js';
-import { sample } from './path.js';
-import { isNight } from './theme.js';
+import { buildScene } from './scene.js?v=51acdceb82b2';
+import { sample } from './path.js?v=51acdceb82b2';
+import { isNight } from './theme.js?v=51acdceb82b2';
 
 const $ = (s) => document.querySelector(s);
 const $$ = (s) => [...document.querySelectorAll(s)];

@@ -1,5 +1,5 @@
-import { projects } from './project-data.js';
-import { currentLanguage, translate } from './i18n.js';
+import { projects } from './project-data.js?v=51acdceb82b2';
+import { currentLanguage, translate } from './i18n.js?v=51acdceb82b2';
 
 const list = document.querySelector('.project-list');
 const reader = document.querySelector('#project-reader');
