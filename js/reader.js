@@ -1,10 +1,11 @@
-import { createGlyphRain } from './glyph-rain.js?v=c837371e97f2';
-import { initLanguage, translate } from './i18n.js?v=c837371e97f2';
+import { createGlyphRain } from './glyph-rain.js?v=993dbe185d8b';
+import { initLanguage, renderArticle, translate } from './i18n.js?v=993dbe185d8b';
+import { articles } from './article-data.js?v=993dbe185d8b';
 
 const reader = document.querySelector('#reader');
 const closeLink = document.querySelector('#close');
 const pauseButton = document.querySelector('#rain-toggle');
-const articleLink = document.querySelector('a[href="#read/revelation"]');
+const articleLinks = [...document.querySelectorAll('#articles a[href^="#read/"]')];
 const rain = createGlyphRain(
   document.querySelector('#glyph-rain'), reader, reader.querySelector('.text'),
   playing => {
@@ -38,28 +39,36 @@ addEventListener('site-language-change', () => {
 initLanguage();
 
 let returnScroll = 0;
+let activeSlug = null;
 function route() {
-  const open = location.hash === '#read/revelation';
-  if (open === !reader.hidden) return;
+  const slug = location.hash.startsWith('#read/') ? location.hash.slice(6) : null;
+  const open = slug === 'revelation' || Object.hasOwn(articles, slug);
+  if (open && activeSlug === slug && !reader.hidden) return;
+  if (!open && reader.hidden) return;
   if (open) {
-    returnScroll = window.scrollY;
+    if (reader.hidden) returnScroll = window.scrollY;
+    rain.close();
+    renderArticle(false);
+    activeSlug = slug;
     reader.hidden = false;
     reader.scrollTop = 0;
     document.documentElement.classList.add('reading');
     closeLink.focus({ preventScroll: true });
     rain.open();
   } else {
+    const articleLink = articleLinks.find(link => link.hash === '#read/' + activeSlug);
+    activeSlug = null;
     rain.close();
     reader.hidden = true;
     document.documentElement.classList.remove('reading');
     window.scrollTo(0, returnScroll);
-    if (returnScroll > 0) articleLink.focus({ preventScroll: true });
+    if (returnScroll > 0) articleLink?.focus({ preventScroll: true });
   }
 }
 
 pauseButton.addEventListener('click', () => rain.toggle());
-articleLink.addEventListener('click', event => {
-  if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+for (const articleLink of articleLinks) articleLink.addEventListener('click', event => {
+  if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
   event.preventDefault();
   history.pushState({ fromDesk: true }, '', articleLink.hash);
   route();

@@ -178,6 +178,19 @@ a { color: inherit; }
   margin: 1.7em 0 .5em; text-align: start;
 }
 #reader p { margin: 0 0 .45em; }
+#reader .text[data-article="hello-charlotte"] {
+  --px: PXL, PXZ, "PingFang SC", ui-monospace, monospace;
+  line-height: 1.65;
+}
+#reader .text[data-article="hello-charlotte"] p { margin-bottom: .9em; }
+#reader .text[data-article="hello-charlotte"] .src { margin-bottom: 1.8em; }
+#reader .text[data-article="hello-charlotte"] hr {
+  width: 3em; margin: 2.5em 0;
+  border: 0; border-top: 1px solid var(--rule);
+}
+#reader .text[data-article="hello-charlotte"] .transcription-note {
+  margin-top: 3em; color: var(--mute); font-size: 12px; text-align: start;
+}
 #reader b { color: var(--red); font: 400 .833333em/1.32 var(--px); white-space: nowrap; }
 .reader-controls {
   position: fixed; z-index: 1;

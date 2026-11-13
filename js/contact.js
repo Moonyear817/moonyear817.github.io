@@ -1,4 +1,4 @@
-import { translate } from './i18n.js?v=c837371e97f2';
+import { translate } from './i18n.js?v=993dbe185d8b';
 
 const dialog = document.querySelector('#wechat-dialog');
 const openButton = document.querySelector('#wechat-open');

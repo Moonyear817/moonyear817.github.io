@@ -1,4 +1,5 @@
-import { locales } from './locales.js?v=c837371e97f2';
+import { locales } from './locales.js?v=993dbe185d8b';
+import { articles } from './article-data.js?v=993dbe185d8b';
 
 const root = document.documentElement;
 const reader = document.querySelector('#reader');
@@ -57,14 +58,41 @@ function applyLanguage() {
     else button.removeAttribute('aria-current');
   }
   document.querySelector('#close').setAttribute('aria-label', item.back);
+  renderArticle();
+  dispatchEvent(new Event('site-language-change'));
+}
+
+export function renderArticle(preserveScroll = true) {
+  const item = locales[language];
+  const slug = location.hash.startsWith('#read/') ? location.hash.slice(6) : 'revelation';
+  const article = Object.hasOwn(articles, slug) ? articles[slug] : null;
   const progress = reader.scrollTop / Math.max(1, reader.scrollHeight - reader.clientHeight);
+  text.dataset.article = article ? slug : 'revelation';
+  text.lang = article?.language || item.locale;
+  text.dir = article ? 'ltr' : language === 'he' ? 'rtl' : 'ltr';
   const title = document.createElement('h1');
   title.id = 'r-title';
-  title.textContent = item.title;
+  title.textContent = article?.title || item.title;
   const edition = document.createElement('p');
   edition.className = 'src';
-  edition.textContent = item.edition;
+  edition.textContent = article?.edition || item.edition;
   const nodes = [title, edition];
+  if (article) {
+    for (const paragraph of article.paragraphs) {
+      const node = document.createElement(paragraph === '***' ? 'hr' : 'p');
+      if (paragraph !== '***') node.textContent = paragraph;
+      nodes.push(node);
+    }
+    if (article.note) {
+      const note = document.createElement('p');
+      note.className = 'transcription-note';
+      note.textContent = article.note;
+      nodes.push(note);
+    }
+    text.replaceChildren(...nodes);
+    reader.scrollTop = preserveScroll ? progress * Math.max(0, reader.scrollHeight - reader.clientHeight) : 0;
+    return;
+  }
   let index = 0;
   for (const [chapter, verses] of [[21, [1, 2]], [22, [1, 2, 5]]]) {
     const heading = document.createElement('h2');
@@ -81,8 +109,7 @@ function applyLanguage() {
     nodes.push(heading, section);
   }
   text.replaceChildren(...nodes);
-  reader.scrollTop = progress * Math.max(0, reader.scrollHeight - reader.clientHeight);
-  dispatchEvent(new Event('site-language-change'));
+  reader.scrollTop = preserveScroll ? progress * Math.max(0, reader.scrollHeight - reader.clientHeight) : 0;
 }
 
 trigger.addEventListener('click', () => menu(list.hidden));
