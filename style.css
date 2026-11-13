@@ -378,3 +378,6 @@ html.viewing-project #desk { visibility: hidden; }
 .project-list a.text-project { grid-template-columns: minmax(0, 1fr); min-height: 72px; }
 .project-repository { display: inline-block; margin: 0 0 32px; color: var(--red); font: 400 18px/1.6 var(--px); text-underline-offset: 5px; }
 .project-repository[hidden], .project-gallery[hidden] { display: none; }
+
+#project-reader [hidden] { display: none; }
+.project-children { max-width: 850px; border-block: 1px solid var(--rule); }

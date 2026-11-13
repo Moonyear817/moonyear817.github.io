@@ -11,30 +11,31 @@ let returnScroll = 0;
 // Project notes are authored in Chinese and English.
 const contentLanguage = () => currentLanguage() === 'zh' ? 'zh' : 'en';
 
+function projectRow(project, language) {
+  const row = document.createElement('li');
+  const link = document.createElement('a');
+  link.href = '#project/' + project.slug;
+  link.lang = language;
+  link.dir = 'ltr';
+  if (project.thumb) {
+    const image = document.createElement('img');
+    image.src = project.thumb;
+    image.alt = '';
+    image.width = 104;
+    image.height = 72;
+    image.loading = 'lazy';
+    link.append(image);
+  } else link.classList.add('text-project');
+  const title = document.createElement('span');
+  title.textContent = project.title[language];
+  link.append(title);
+  row.append(link);
+  return row;
+}
+
 function renderList() {
-  const language = contentLanguage();
-  const rows = projects.map(project => {
-    const row = document.createElement('li');
-    const link = document.createElement('a');
-    link.href = '#project/' + project.slug;
-    link.lang = language;
-    link.dir = 'ltr';
-    if (project.thumb) {
-      const image = document.createElement('img');
-      image.src = project.thumb;
-      image.alt = '';
-      image.width = 104;
-      image.height = 72;
-      image.loading = 'lazy';
-      link.append(image);
-    } else link.classList.add('text-project');
-    const title = document.createElement('span');
-    title.textContent = project.title[language];
-    link.append(title);
-    row.append(link);
-    return row;
-  });
-  list.replaceChildren(...rows);
+  list.replaceChildren(...projects.filter(project => !project.parent)
+    .map(project => projectRow(project, contentLanguage())));
 }
 
 function createFigure(image, language, loading = 'lazy') {
@@ -62,6 +63,16 @@ function renderProject(project) {
   close.setAttribute('aria-label', translate('back'));
   document.querySelector('#project-title').textContent = project.title[language];
   reader.querySelector('.project-description').textContent = project.description[language];
+  close.href = project.parent ? '#project/' + project.parent : '#projects';
+
+  const children = content.querySelector('.project-children');
+  children.hidden = !project.collection;
+  children.setAttribute('aria-label', language === 'zh' ? '选择建模作品' : 'Select a 3D work');
+  children.replaceChildren(...projects.filter(item => item.parent === project.slug)
+    .map(item => projectRow(item, language)));
+  for (const selector of ['.project-sections', '.project-gallery', '.project-process', '.project-credit']) {
+    content.querySelector(selector).hidden = !!project.collection;
+  }
 
   let repository = content.querySelector('.project-repository');
   if (!repository) {
@@ -76,6 +87,7 @@ function renderProject(project) {
     repository.href = project.repository;
     repository.textContent = language === 'zh' ? '在 GitHub 查看源码 ↗' : 'View source on GitHub ↗';
   }
+  if (project.collection) return;
 
   const sections = content.querySelector('.project-sections');
   sections.setAttribute('aria-label', language === 'zh' ? '项目内容' : 'Project content');
@@ -152,18 +164,20 @@ function route() {
   }
 }
 
-list.addEventListener('click', event => {
+function openProject(event) {
   const link = event.target.closest('a');
   if (!link || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
   event.preventDefault();
   history.pushState({ fromProjects: true }, '', link.hash);
   route();
-});
+}
+list.addEventListener('click', openProject);
+content.querySelector('.project-children').addEventListener('click', openProject);
 close.addEventListener('click', event => {
   event.preventDefault();
   if (history.state?.fromProjects) history.back();
   else {
-    history.replaceState(null, '', '#projects');
+    history.replaceState(null, '', active?.parent ? '#project/' + active.parent : '#projects');
     route();
   }
 });

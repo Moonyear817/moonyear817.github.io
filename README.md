@@ -18,7 +18,7 @@ node serve.mjs
 
 - `index.html`、`style.css`：页面结构与样式。
 - `js/scene.js`、`js/path.js`、`js/main.js`：三维场景与滚动镜头。
-- `js/project-data.js`：六个项目的中英文介绍与制作过程。
+- `js/project-data.js`：三个项目入口及四个建模作品的中英文介绍与制作过程。
 - `js/reader.js`、`js/glyph-rain.js`：阅读页与延迟渐密落字。
 - `js/locales.js`、`js/i18n.js`、`js/theme.js`：语言与主题。
 

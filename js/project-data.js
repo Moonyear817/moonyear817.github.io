@@ -1,5 +1,17 @@
 export const projects = [
   {
+    "slug": "modeling",
+    "collection": true,
+    "title": {
+      "zh": "建模作品集",
+      "en": "3D Portfolio"
+    },
+    "description": {
+      "zh": "四个建模与场景项目。选择作品，查看成品展示、参考整理、制作过程与工具。",
+      "en": "Four modeling and environment projects. Select a work to explore the renders, references, process and tools."
+    }
+  },
+  {
     "slug": "rhodes",
     "title": {
       "zh": "罗德岛号",
@@ -95,7 +107,8 @@ export const projects = [
           }
         }
       ]
-    }
+    },
+    "parent": "modeling"
   },
   {
     "slug": "t84",
@@ -199,7 +212,8 @@ export const projects = [
         "label": "Sunflower 3D · soufiane oujihi",
         "url": "https://sketchfab.com/3d-models/sunflower-3d-966d0bee6e204d9ca927a601cf85cbc2"
       }
-    ]
+    ],
+    "parent": "modeling"
   },
   {
     "slug": "linan",
@@ -297,7 +311,8 @@ export const projects = [
           }
         }
       ]
-    }
+    },
+    "parent": "modeling"
   },
   {
     "slug": "night-plaza",
@@ -395,7 +410,8 @@ export const projects = [
           }
         }
       ]
-    }
+    },
+    "parent": "modeling"
   },
   {
     "slug": "yufi",
@@ -468,14 +484,14 @@ export const projects = [
   {
     "slug": "wandan-index",
     "title": {
-      "zh": "完蛋指数 · 方法与计算",
-      "en": "Wandan Index · Methods & Calculation"
+      "zh": "临界指数 · 方法与计算",
+      "en": "Criticality Index · Methods & Calculation"
     },
     "description": {
       "zh": "围绕“经营能力已经受损到什么程度”构建的试行评估框架。公开版包含六系统判据、方案 A/B 对照、未知区间、模拟算例与 Python 精确计算器。",
       "en": "An experimental framework for describing impairment of operating capacity. The public edition includes six-system criteria, A/B rules, uncertainty ranges, constructed examples and an exact Python calculator."
     },
-    "repository": "https://github.com/Moonyear817/wandan-index",
+    "repository": "https://github.com/Moonyear817/criticality-index",
     "gallery": [],
     "credit": {
       "zh": "研究中的方法原型，尚未完成多案例实证验证。分数描述当前状态，不表示倒闭概率。公开算例为构造数据。",
@@ -484,7 +500,7 @@ export const projects = [
     "sources": [
       {
         "label": "方法说明 / Methods",
-        "url": "https://github.com/Moonyear817/wandan-index/blob/main/docs/method.md"
+        "url": "https://github.com/Moonyear817/criticality-index/blob/main/docs/method.md"
       }
     ],
     "process": {
