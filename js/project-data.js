@@ -764,7 +764,7 @@ export const projects = [
         "ru": "Методология"
       },
       "tools": {
-        "zh": "Python · Rational arithmetic · State-space enumeration",
+        "zh": "Python · 有理数运算 · 状态空间枚举",
         "en": "Python · Rational arithmetic · State-space enumeration",
         "ja": "Python・有理数演算・状態空間の列挙",
         "ko": "Python · 유리수 연산 · 상태 공간 열거",

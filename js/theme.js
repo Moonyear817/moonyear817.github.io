@@ -1,4 +1,4 @@
-import { translate } from './i18n.js?v=eb643ac64913';
+import { translate } from './i18n.js?v=505b5d66fddb';
 
 const root = document.documentElement;
 const button = document.querySelector('#theme-toggle');

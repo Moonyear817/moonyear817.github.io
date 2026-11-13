@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { mergeGeometries } from 'three/addons/BufferGeometryUtils.js';
-import { pathXZ } from './path.js?v=eb643ac64913';
+import { pathXZ } from './path.js?v=505b5d66fddb';
 
 // ───────────────────────── 配色：只有红、白、黑 ─────────────────────────
 // 每个材质三档颜色：受光面 / 侧光面 / 背光面。面朝向决定用哪一档，

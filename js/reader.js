@@ -1,5 +1,5 @@
-import { createGlyphRain } from './glyph-rain.js?v=eb643ac64913';
-import { initLanguage, translate } from './i18n.js?v=eb643ac64913';
+import { createGlyphRain } from './glyph-rain.js?v=505b5d66fddb';
+import { initLanguage, translate } from './i18n.js?v=505b5d66fddb';
 
 const reader = document.querySelector('#reader');
 const closeLink = document.querySelector('#close');
