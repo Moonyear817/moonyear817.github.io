@@ -1,4 +1,4 @@
-import { locales } from './locales.js?v=d84902b7dbb2';
+import { locales } from './locales.js?v=eb643ac64913';
 
 const root = document.documentElement;
 const reader = document.querySelector('#reader');
@@ -12,10 +12,13 @@ try {
   if (locales[saved]) language = saved;
 } catch {}
 
-export const translate = key => locales[language][key];
+export const translate = key => locales[language][key] ?? locales.en[key];
 export const currentLanguage = () => language;
 
-for (const [code, item] of Object.entries(locales)) {
+const primaryLanguages = ['zh', 'en', 'ja', 'ko', 'ru'];
+const languageOrder = [...primaryLanguages, ...Object.keys(locales).filter(code => !primaryLanguages.includes(code))];
+for (const code of languageOrder) {
+  const item = locales[code];
   const button = document.createElement('button');
   button.type = 'button';
   button.dataset.language = code;
@@ -43,7 +46,7 @@ function applyLanguage() {
   text.dir = language === 'he' ? 'rtl' : 'ltr';
   document.querySelectorAll('[data-i18n]').forEach(node => {
     node.textContent = node.dataset.i18n === 'articleTitle'
-      ? (language === 'zh' ? '启示录 · 新天新地' : item.title)
+      ? (item.articleTitle || item.title)
       : item[node.dataset.i18n];
   });
   trigger.title = item.language;

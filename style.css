@@ -45,7 +45,7 @@ html[data-theme="dark"] {
   color-scheme: dark;
 }
 html:lang(ja) { --px: PXL, PXJ, PXZ, monospace; }
-html:lang(ko) { --px: PXL, PXK, PXZ, monospace; }
+html:lang(ko) { --px: PXL, PXK, PXZ, monospace; word-break: keep-all; overflow-wrap: anywhere; }
 html:lang(he) { --px: Arial, sans-serif; }
 html:lang(th) { --px: Tahoma, "Thonburi", sans-serif; }
 html:lang(hi) { --px: "Kohinoor Devanagari", sans-serif; }

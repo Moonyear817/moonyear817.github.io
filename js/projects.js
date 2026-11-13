@@ -1,5 +1,5 @@
-import { projects } from './project-data.js?v=d84902b7dbb2';
-import { currentLanguage, translate } from './i18n.js?v=d84902b7dbb2';
+import { projects } from './project-data.js?v=eb643ac64913';
+import { currentLanguage, translate } from './i18n.js?v=eb643ac64913';
 
 const list = document.querySelector('.project-list');
 const reader = document.querySelector('#project-reader');
@@ -8,8 +8,8 @@ const close = document.querySelector('#project-close');
 let active = null;
 let returnScroll = 0;
 
-// Project notes are authored in Chinese and English.
-const contentLanguage = () => currentLanguage() === 'zh' ? 'zh' : 'en';
+const projectLanguages = ['zh', 'en', 'ja', 'ko', 'ru'];
+const contentLanguage = () => projectLanguages.includes(currentLanguage()) ? currentLanguage() : 'en';
 
 function projectRow(project, language) {
   const row = document.createElement('li');
@@ -67,7 +67,7 @@ function renderProject(project) {
 
   const children = content.querySelector('.project-children');
   children.hidden = !project.collection;
-  children.setAttribute('aria-label', language === 'zh' ? '选择建模作品' : 'Select a 3D work');
+  children.setAttribute('aria-label', translate('selectWork'));
   children.replaceChildren(...projects.filter(item => item.parent === project.slug)
     .map(item => projectRow(item, language)));
   for (const selector of ['.project-sections', '.project-gallery', '.project-process', '.project-credit']) {
@@ -85,16 +85,16 @@ function renderProject(project) {
   repository.hidden = !project.repository;
   if (project.repository) {
     repository.href = project.repository;
-    repository.textContent = language === 'zh' ? '在 GitHub 查看源码 ↗' : 'View source on GitHub ↗';
+    repository.textContent = translate('sourceCode');
   }
   if (project.collection) return;
 
   const sections = content.querySelector('.project-sections');
-  sections.setAttribute('aria-label', language === 'zh' ? '项目内容' : 'Project content');
+  sections.setAttribute('aria-label', translate('projectContent'));
   sections.querySelector('[data-project-scroll=".project-gallery"]').hidden = !project.gallery.length;
   sections.querySelector('[data-project-scroll=".project-gallery"]').textContent =
-    language === 'zh' ? '成品展示' : 'Gallery';
-  const processLabel = project.process.label?.[language] || (language === 'zh' ? '制作过程' : 'Making of');
+    translate('gallery');
+  const processLabel = project.process.label?.[language] || translate('makingOf');
   sections.querySelector('[data-project-scroll=".project-process"]').textContent = processLabel;
 
   const gallery = reader.querySelector('.project-gallery');
@@ -105,7 +105,8 @@ function renderProject(project) {
   ));
 
   content.querySelector('#project-process-title').textContent = processLabel;
-  content.querySelector('.project-tools').textContent = project.process.tools;
+  content.querySelector('.project-tools').textContent = typeof project.process.tools === 'string'
+    ? project.process.tools : project.process.tools[language];
   content.querySelector('.project-process-steps').replaceChildren(
     ...project.process.steps.map(step => {
       const section = document.createElement('section');
@@ -125,7 +126,7 @@ function renderProject(project) {
   for (const source of project.sources || []) {
     const link = document.createElement('a');
     link.href = source.url;
-    link.textContent = source.label;
+    link.textContent = typeof source.label === 'string' ? source.label : source.label[language];
     link.target = '_blank';
     link.rel = 'noopener';
     credit.append(' ', link);

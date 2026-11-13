@@ -18,9 +18,15 @@ node serve.mjs
 
 - `index.html`、`style.css`：页面结构与样式。
 - `js/scene.js`、`js/path.js`、`js/main.js`：三维场景与滚动镜头。
-- `js/project-data.js`：三个项目入口及四个建模作品的中英文介绍与制作过程。
+- `js/project-data.js`：三个项目入口及四个建模作品的中、英、日、韩、俄语介绍与制作过程。
 - `js/reader.js`、`js/glyph-rain.js`：阅读页与延迟渐密落字。
 - `js/locales.js`、`js/i18n.js`、`js/theme.js`：语言与主题。
+
+## 多语言
+
+中、英、日、韩、俄语覆盖界面、项目正文、图片说明、研究方法和阅读页。其他语言保留现有界面与阅读文本，项目正文使用英文。
+
+运行 `python3 scripts/check-translations.py` 检查五种主语言的内容完整性。
 
 ## 发布
 

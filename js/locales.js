@@ -30,7 +30,13 @@ export const locales = {
     "closeContact": "关闭",
     "contact": "联系方式",
     "themeLight": "切换至白天模式",
-    "themeDark": "切换至夜间模式"
+    "themeDark": "切换至夜间模式",
+    "selectWork": "选择建模作品",
+    "projectContent": "项目内容",
+    "sourceCode": "在 GitHub 查看源码 ↗",
+    "gallery": "成品展示",
+    "makingOf": "制作过程",
+    "articleTitle": "启示录 · 新天新地"
   },
   "en": {
     "name": "English",
@@ -62,7 +68,13 @@ export const locales = {
     "closeContact": "Close",
     "contact": "Contact",
     "themeLight": "Switch to day mode",
-    "themeDark": "Switch to night mode"
+    "themeDark": "Switch to night mode",
+    "selectWork": "Select a 3D work",
+    "projectContent": "Project content",
+    "sourceCode": "View source on GitHub ↗",
+    "gallery": "Gallery",
+    "makingOf": "Making of",
+    "articleTitle": "Revelation · A New Heaven and a New Earth"
   },
   "ja": {
     "name": "日本語",
@@ -94,7 +106,13 @@ export const locales = {
     "closeContact": "閉じる",
     "contact": "連絡先",
     "themeLight": "昼モードに切り替え",
-    "themeDark": "夜モードに切り替え"
+    "themeDark": "夜モードに切り替え",
+    "selectWork": "3D作品を選択",
+    "projectContent": "プロジェクト内容",
+    "sourceCode": "GitHubでソースを見る ↗",
+    "gallery": "完成画像",
+    "makingOf": "制作工程",
+    "articleTitle": "ヨハネの黙示録 · 新しい天と地"
   },
   "de": {
     "name": "Deutsch",
@@ -222,7 +240,13 @@ export const locales = {
     "closeContact": "닫기",
     "contact": "연락처",
     "themeLight": "주간 모드로 전환",
-    "themeDark": "야간 모드로 전환"
+    "themeDark": "야간 모드로 전환",
+    "selectWork": "3D 작품 선택",
+    "projectContent": "프로젝트 내용",
+    "sourceCode": "GitHub에서 소스 보기 ↗",
+    "gallery": "완성 이미지",
+    "makingOf": "제작 과정",
+    "articleTitle": "요한계시록 · 새 하늘과 새 땅"
   },
   "la": {
     "name": "Latina",
@@ -286,7 +310,13 @@ export const locales = {
     "closeContact": "Закрыть",
     "contact": "Контакты",
     "themeLight": "Включить дневной режим",
-    "themeDark": "Включить ночной режим"
+    "themeDark": "Включить ночной режим",
+    "selectWork": "Выбрать 3D-работу",
+    "projectContent": "Содержание проекта",
+    "sourceCode": "Исходный код на GitHub ↗",
+    "gallery": "Галерея",
+    "makingOf": "Процесс создания",
+    "articleTitle": "Откровение · Новое небо и новая земля"
   },
   "pt": {
     "name": "Português",
