@@ -1,5 +1,5 @@
-import { projects } from './project-data.js?v=993dbe185d8b';
-import { currentLanguage, translate } from './i18n.js?v=993dbe185d8b';
+import { projects } from './project-data.js?v=475a0d0fea66';
+import { currentLanguage, translate } from './i18n.js?v=475a0d0fea66';
 
 const list = document.querySelector('.project-list');
 const reader = document.querySelector('#project-reader');
@@ -159,7 +159,7 @@ function route() {
     const link = list.querySelector('a[href="#project/' + active.slug + '"]');
     active = null;
     if (returnScroll > 0) scrollTo(0, returnScroll);
-    else document.querySelector('#projects').scrollIntoView();
+    else dispatchEvent(new HashChangeEvent('hashchange'));
     link?.focus({ preventScroll: true });
   }
 }

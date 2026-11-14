@@ -1,8 +1,9 @@
 import * as THREE from 'three';
 import { Reflector } from 'three/addons/Reflector.js';
-import { buildScene } from './scene.js?v=993dbe185d8b';
-import { sample } from './path.js?v=993dbe185d8b';
-import { isNight } from './theme.js?v=993dbe185d8b';
+import { buildScene } from './scene.js?v=475a0d0fea66';
+import { sample } from './path.js?v=475a0d0fea66';
+import { isNight } from './theme.js?v=475a0d0fea66';
+import { createPortalPanels } from './portal-panels.js?v=475a0d0fea66';
 
 const $ = (s) => document.querySelector(s);
 const $$ = (s) => [...document.querySelectorAll(s)];
@@ -85,6 +86,7 @@ function placeCamera(u, t) {
 const fixed = new URLSearchParams(location.search).get('u');
 window.__setU = (u) => { cur = target = u; };
 
+const panels = createPortalPanels(camera);
 const T0 = performance.now();
 const reader = $('#reader');
 const projectReader = $('#project-reader');
@@ -110,50 +112,11 @@ function frame() {
   cur += (target - cur) * (RM ? 1 : 0.075);
   if (Math.abs(target - cur) < 1e-5) cur = target;
   placeCamera(cur, t);
+  panels.update(cur, t);
   water.material.uniforms.uTime.value = RM ? 0 : t;
   renderer.render(scene, camera);
 }
 frame();
-
-// ───────── 窗口：进入视野时浮现 ─────────
-const io = new IntersectionObserver((es) => {
-  for (const e of es) if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
-}, { rootMargin: '0px 0px -12% 0px' });
-$$('.win').forEach((w) => io.observe(w));
-
-// ───────── 窗口：宽屏可拖动，拖起来有硬投影 ─────────
-const wide = matchMedia('(min-width: 900px) and (pointer: fine)');
-let z = 3;
-for (const w of $$('.win')) {
-  const bar = w.querySelector('.bar');
-  let sx = 0, sy = 0, ox = 0, oy = 0, on = false;
-  w.addEventListener('pointerdown', () => { w.style.zIndex = ++z; });
-  bar.addEventListener('pointerdown', (e) => {
-    if (!wide.matches || e.button !== 0) return;
-    on = true; sx = e.clientX; sy = e.clientY;
-    ox = parseFloat(w.dataset.x || 0); oy = parseFloat(w.dataset.y || 0);
-    w.classList.add('lift'); bar.setPointerCapture(e.pointerId);
-  });
-  bar.addEventListener('pointermove', (e) => {
-    if (!on) return;
-    const x = ox + e.clientX - sx, y = oy + e.clientY - sy;
-    w.dataset.x = x; w.dataset.y = y;
-    w.style.transform = `translate(${x}px, ${y}px)`;
-  });
-  const end = () => {
-    if (!on) return; on = false; w.classList.remove('lift');
-    // 压在别的窗口上面时保留投影
-    const r = w.getBoundingClientRect();
-    w.classList.toggle('ov', $$('.win').some((o) => {
-      if (o === w) return false;
-      const q = o.getBoundingClientRect();
-      return r.left < q.right && r.right > q.left && r.top < q.bottom && r.bottom > q.top;
-    }));
-  };
-  bar.addEventListener('pointerup', end);
-  bar.addEventListener('pointercancel', end);
-}
-wide.addEventListener('change', () => $$('.win').forEach((w) => { w.style.transform = ''; delete w.dataset.x; delete w.dataset.y; w.classList.remove('ov'); }));
 
 // 待补充的链接不跳转
 $$('[data-todo], .list a[href="#"]').forEach((a) => a.addEventListener('click', (e) => e.preventDefault()));

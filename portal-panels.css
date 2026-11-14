@@ -1,0 +1,41 @@
+/* Only the content layer changes; original scene, runway and camera stay intact. */
+#desk.spatial-desk {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  display: block;
+  pointer-events: none;
+  overflow: clip;
+}
+.portal-slot, .portal-aperture {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.portal-slot { visibility: hidden; }
+.portal-plane {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform-origin: 0 0;
+  will-change: transform;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  pointer-events: none;
+}
+.spatial-desk .win {
+  width: 100%;
+  margin: 0;
+  opacity: 1;
+  transform: none;
+  transition: none;
+  pointer-events: auto;
+}
+.portal-slot[inert] .win { pointer-events: none; }
+.spatial-desk .bar { cursor: default; }
+#journey-tail { height: 85vh; pointer-events: none; }

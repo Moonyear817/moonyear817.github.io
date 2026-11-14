@@ -1,6 +1,6 @@
-import { createGlyphRain } from './glyph-rain.js?v=993dbe185d8b';
-import { initLanguage, renderArticle, translate } from './i18n.js?v=993dbe185d8b';
-import { articles } from './article-data.js?v=993dbe185d8b';
+import { createGlyphRain } from './glyph-rain.js?v=475a0d0fea66';
+import { initLanguage, renderArticle, translate } from './i18n.js?v=475a0d0fea66';
+import { articles } from './article-data.js?v=475a0d0fea66';
 
 const reader = document.querySelector('#reader');
 const closeLink = document.querySelector('#close');
