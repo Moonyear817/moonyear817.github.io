@@ -13,7 +13,8 @@
     ? theme : matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 })();
 </script>
-<link rel="stylesheet" href="./style.css?v=993dbe185d8b">
+<link rel="stylesheet" href="./style.css?v=8b7f927ec8aa">
+<link rel="stylesheet" href="./portal-panels.css?v=8b7f927ec8aa">
 <script type="importmap">
 { "imports": {
   "three": "./vendor/three/three.module.js",
@@ -25,10 +26,11 @@
 <canvas id="gl" aria-hidden="true"></canvas>
 <div id="grain" aria-hidden="true"></div>
 
-<!-- 前半段：只有场景和运镜，没有任何文字 -->
+<!-- 沿用原来的滚动距离与镜头轨道 -->
 <div id="runway" aria-hidden="true"></div>
+<div id="journey-tail" aria-hidden="true"></div>
 
-<!-- 后半段：四个栏目窗口，像 0z5a 一样浮在场景上 -->
+<!-- 四个原有窗口由 portal-panels.js 放入沿途三个门内空间 -->
 <main id="desk">
   <div class="lane a">
     <section class="win" id="about" aria-labelledby="t-about">
@@ -152,10 +154,10 @@
   </div>
 </article>
 
-<script type="module" src="./js/theme.js?v=993dbe185d8b"></script>
-<script type="module" src="./js/reader.js?v=993dbe185d8b"></script>
-<script type="module" src="./js/projects.js?v=993dbe185d8b"></script>
-<script type="module" src="./js/contact.js?v=993dbe185d8b"></script>
-<script type="module" src="./js/main.js?v=993dbe185d8b"></script>
+<script type="module" src="./js/theme.js?v=8b7f927ec8aa"></script>
+<script type="module" src="./js/reader.js?v=8b7f927ec8aa"></script>
+<script type="module" src="./js/projects.js?v=8b7f927ec8aa"></script>
+<script type="module" src="./js/contact.js?v=8b7f927ec8aa"></script>
+<script type="module" src="./js/main.js?v=8b7f927ec8aa"></script>
 </body>
 </html>

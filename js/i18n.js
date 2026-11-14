@@ -1,5 +1,5 @@
-import { locales } from './locales.js?v=993dbe185d8b';
-import { articles } from './article-data.js?v=993dbe185d8b';
+import { locales } from './locales.js?v=8b7f927ec8aa';
+import { articles } from './article-data.js?v=8b7f927ec8aa';
 
 const root = document.documentElement;
 const reader = document.querySelector('#reader');
