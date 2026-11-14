@@ -8,8 +8,10 @@ const STATIONS = [
     position: [12, 10.8, 280], width: 24, pixels: 420, yaw: -.3 },
   { id: 'projects', sections: ['projects'], read: .566,
     position: [6, 10.9, -14], width: 16, pixels: 420, yaw: 0 },
-  { id: 'articles', sections: ['articles', 'thoughts'], read: .812,
-    position: [-6, 7.7, -164], width: 11.2, pixels: 420, yaw: 0 },
+  { id: 'articles', sections: ['articles'], read: .812, anchor: 'top',
+    position: [-6, 10.8, -164], width: 11.2, pixels: 420, yaw: 0 },
+  { id: 'thoughts', sections: ['thoughts'], read: .812, anchor: 'top',
+    position: [6, 10.8, -164], width: 11.2, pixels: 420, yaw: 0 },
 ];
 
 // Exact door openings from scene.js, including the front/back of thick walls.
@@ -143,7 +145,8 @@ export function createPortalPanels(camera) {
         rotation.setFromAxisAngle(new THREE.Vector3(0, 1, 0), station.yaw);
         scale.setScalar(units);
         model.compose(center, rotation, scale).multiply(flip);
-        origin.makeTranslation(-station.measuredWidth / 2, -station.height / 2, 0);
+        origin.makeTranslation(-station.measuredWidth / 2,
+          station.anchor === 'top' ? 0 : -station.height / 2, 0);
         model.multiply(origin);
         transform.copy(viewport).multiply(viewProjection).multiply(model);
         station.plane.style.transform = `matrix3d(${transform.elements.join(',')})`;
